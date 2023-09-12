@@ -19,7 +19,8 @@
 ### Association
 
 - has_many :items
-- has_one :order
+- has_many :orders
+- has_many :addresses
 
 
 ## items テーブル
@@ -27,31 +28,44 @@
 | Column          | Type       | Options                                        |
 | --------------- | ---------- | ---------------------------------------------- |
 | name            | string     | null: false                                    |
-| explanation     | text       | null: false, length: {maximum:40}              |
-| category        | integer    | null: false, length: {maximum:1000}            |
+| explanation     | text       | null: false                                    |
+| category        | integer    | null: false                                    |
 | condition       | integer    | null: false                                    |
-| derivery_cost   | integer    | null: false,                                   |
-| shipping_source | integer    | null: false,                                   |
-| sending_date    | integer    | null: false,                                   |
+| derivery_cost   | integer    | null: false                                    |
+| shipping_source | integer    | null: false                                    |
+| sending_date    | integer    | null: false                                    |
 | price           | integer    | null: false, format: {with: / \A [0-9]+ \z / } |
 | user            | references | null: false, foreign_key: true                 |
 
 ### Association
 
 - belongs_to :user
-- has_one :message
+- has_one :order
+
+
+## addresses テーブル
+
+| Column           | Type       | Options                                          |
+| ---------------- | ---------- | ------------------------------------------------ |
+| post_code        | string     | null: false format: {with: /\A\d{3}[-]\d{4}\z/ } |
+| prefecture       | string     | null: false                                      |
+| city             | integer    | null: false                                      |
+| house_number     | integer    | null: false                                      |
+| building_name    | string     |                                                  |
+| telephone_number | string     | null: false                                      |
+| user             | references | null: false, foreign_key: true                   |
+| order            | references | null: false, foreign_key: true                   |
+
+### Association
+
+- belongs_to :order
+- belongs_to :user
 
 
 ## orders テーブル
 
 | Column           | Type       | Options                                |
 | ---------------- | ---------- | -------------------------------------- |
-| post_code        | string     | null: false                            |
-| prefecture       | string     | null: false                            |
-| city             | integer    | null: false                            |
-| house_number     | integer    | null: false                            |
-| building_name    | string     |                                        |
-| telephone_number | string     | null: false                            |
 | user             | references | null: false, foreign_key: true         |
 | item             | references | null: false, foreign_key: true         |
 
@@ -59,3 +73,4 @@
 
 - belongs_to :item
 - belongs_to :user
+- has_one :address
