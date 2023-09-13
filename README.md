@@ -9,7 +9,7 @@
 | encrypted_password | string  | null: false                                         |
 | first_name         | string  | null: false, format: {with: /\A[ぁ-んァ-ン一-龥]/ } |
 | last_name          | string  | null: false, format: {with: /\A[ぁ-んァ-ン一-龥]/ } |
-| first_name_reading | string  | null: false, format: {with: /\A[ァ-ヶー－]+\z/ }    |
+| first_name_reading | string  | null: false, format: {with: /\A[ァ-ヶー－]+\z∫/ }    |
 | last_name_reading  | string  | null: false, format: {with: /\A[ァ-ヶー－]+\z/ }    |
 | birthday           | date    | null: false                                         |
 
