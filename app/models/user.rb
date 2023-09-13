@@ -13,6 +13,6 @@ class User < ApplicationRecord
     validates :birthday
   end
 
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
   validates :password, format: { with: VALID_PASSWORD_REGEX }
 end
