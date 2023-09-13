@@ -1,4 +1,7 @@
 class Item < ApplicationRecord
+  has_one_attached :image
+  belongs_to :user
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :condition
   belongs_to :category
@@ -19,5 +22,4 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :sending_date_id
   end
-
 end
