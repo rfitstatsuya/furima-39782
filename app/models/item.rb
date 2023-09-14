@@ -10,9 +10,10 @@ class Item < ApplicationRecord
   belongs_to :sending_date
 
   with_options presence: true do
+    validates :image
     validates :name
     validates :explanation
-    validates :price, format: {with: /\A [0-9]+ \z/ }
+    validates :price, format: {with: / \A[0-9]+\z / }, numericality: { in: 300..9_999_999 }
   end
 
   with_options numericality: { other_than: 1 , message: "can't be blank"} do
