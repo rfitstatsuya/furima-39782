@@ -8,7 +8,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.integer    :derivery_cost_id, null: false
       t.integer    :prefecture_id,    null: false
       t.integer    :sending_date_id,  null: false
-      t.integer    :price,            null: false, format: {with: /\A [0-9]+ \z/ }
+      t.integer    :price,            null: false, format: { with: /\A [0-9]+ \z/ }
       t.references :user,             null: false, foreign_key: true
       t.timestamps
     end
