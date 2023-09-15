@@ -3,7 +3,7 @@ window.addEventListener('turbo:load', () => {
   itemPrice.addEventListener("input", () => {
     const addTaxPrice = document.getElementById("add-tax-price")
     const profit = document.getElementById("profit")
-    addTaxPrice.innerHTML = `${Math.round(itemPrice.value * 0.1).toLocaleString()}`
-    profit.innerHTML = `${Math.round(itemPrice.value - itemPrice.value * 0.1).toLocaleString()}`
+    addTaxPrice.innerHTML = `${Math.floor(itemPrice.value * 0.1).toLocaleString()}`
+    profit.innerHTML = `${Math.floor(itemPrice.value - itemPrice.value * 0.1).toLocaleString()}`
     });
 });
