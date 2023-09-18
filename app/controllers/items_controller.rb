@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_sign_in, only: [:new]
+  before_action :move_to_sign_in, only: %i[new edit]
   before_action :set_item, only: %i[show edit update]
 
   def index
@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
   def show; end
 
   def edit
-    return if user_signed_in? && current_user.id == @item.user_id
+    return if current_user.id == @item.user_id
 
     redirect_to action: :index
   end
