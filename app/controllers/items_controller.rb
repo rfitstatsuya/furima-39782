@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :move_to_sign_in, only: [:new]
+  before_action :move_to_sign_in, only: %i[new edit]
+  before_action :set_item, only: %i[show edit update]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -18,8 +19,20 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-    @item = Item.find(params[:id])
+  def show; end
+
+  def edit
+    return if current_user.id == @item.user_id
+
+    redirect_to action: :index
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to action: :show
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
@@ -28,6 +41,10 @@ class ItemsController < ApplicationController
     return if user_signed_in?
 
     redirect_to new_user_session_path
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
   def item_params
