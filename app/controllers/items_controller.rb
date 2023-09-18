@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :move_to_sign_in, only: %i[new edit]
-  before_action :set_item, only: %i[show edit update]
+  before_action :move_to_sign_in, only: %i[new edit destroy]
+  before_action :set_item, only: %i[show edit update destroy]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -32,6 +32,15 @@ class ItemsController < ApplicationController
       redirect_to action: :show
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if current_user.id == @item.user_id
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
     end
   end
 
