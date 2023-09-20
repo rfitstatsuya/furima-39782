@@ -28,7 +28,7 @@
       </p>
     </div>
 
-    <%= form_with model: @order_address, url: item_orders_path(@item.id), id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%= form_with model: @order_address, data: { turbo: false }, url: item_orders_path(@item.id), id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     <%# カード情報の入力 %>
 
     <%= render 'shared/error_messages', model: f.object %>
