@@ -87,3 +87,4 @@ gem 'image_processing', '~> 1.2'
 gem 'mini_magick'
 gem 'payjp'
 gem 'pry-rails'
+gem "aws-sdk-s3", require: false
